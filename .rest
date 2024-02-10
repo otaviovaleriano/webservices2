@@ -18,3 +18,27 @@ content-type: application/json
 "Keyless Entry"
 ]
 }
+
+### Deploy to Render
+
+### GET ALL cars
+GET https://webservices2.onrender.com/cars/
+
+
+### POST a new car
+POST https://webservices2.onrender.com/cars/
+content-type: application/json
+
+{
+"brand": "Nissan",
+"model": "Altima",
+"year": 2023,
+"color": "Silver",
+"fuelType": "Gasoline",
+"mileage": 4500,
+"features": [
+"Bluetooth",
+"Backup Camera",
+"Keyless Entry"
+]
+}
