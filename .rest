@@ -1,0 +1,20 @@
+### GET all cars
+GET http://localhost:8080/cars/
+
+### POST a new car
+POST http://localhost:8080/cars/
+content-type: application/json
+
+{
+"brand": "Toyota",
+"model": "Tundra",
+"year": 2021,
+"color": "Black",
+"fuelType": "Gasoline",
+"mileage": 4500,
+"features": [
+"Bluetooth",
+"Backup Camera",
+"Keyless Entry"
+]
+}
