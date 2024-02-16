@@ -12,20 +12,24 @@ const getAllCars = async (req, res, next) => {
   });
 };
 
-// const getSingle = async (req, res, next) => {
-//   const userId = new ObjectId(req.params.id);
-//   const result = await mongodb
-//     .getDb()
-//     .db()
-//     .collection("cars")
-//     .find({ _id: userId });
-//   result.toArray().then((lists) => {
-//     res.setHeader("Content-Type", "application/json");
-//     res.status(200).json(lists[0]);
-//   });
-// };
+// GET Specific Car
+const getSingleCar = async (req, res, next) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid carId to find a car.');
+  }
+  const carId = new ObjectId(req.params.id);
+  const result = await mongodb
+    .getDb()
+    .db()
+    .collection("cars")
+    .find({ _id: carId });
+  result.toArray().then((lists) => {
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(lists[0]);
+  });
+};
 
-// POST
+// POST new Car
 const createNewCar = async (req, res) => {
   try {
     const car = {
@@ -38,7 +42,7 @@ const createNewCar = async (req, res) => {
         features: req.body.features || [] // features is an array; 
       };
 
-    console.log("Received contact data:", car);
+    console.log("Received car data:", car);
 
     // Assuming you have a MongoDB connection named 'mongodb'
     const response = await mongodb
@@ -59,60 +63,71 @@ const createNewCar = async (req, res) => {
         );
     }
   } catch (error) {
-    console.error("Error creating contact:", error);
+    console.error("Error creating car:", error);
     res.status(500).json("Internal server error");
   }
 };
 
-// const updateContact = async (req, res) => {
-//   const userId = new ObjectId(req.params.id);
-//   const contact = {
-//     firstName: req.body.firstName,
-//     lastName: req.body.lastName,
-//     email: req.body.email,
-//     favoriteColor: req.body.favoriteColor,
-//     birthday: req.body.birthday,
-//   };
-//   const response = await mongodb
-//     .getDb()
-//     .db()
-//     .collection("cars")
-//     .replaceOne({ _id: userId }, contact);
-//   console.log(response);
-//   if (response.modifiedCount > 0) {
-//     res.status(204).send();
-//   } else {
-//     res
-//       .status(500)
-//       .json(
-//         response.error || "Update failed. Contact not found or something went wrong..."
-//       );
-//   }
-// };
+// PUT new info on a specific car
+const updateCar = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid carId to update a car.');
+  }
+  const carId = new ObjectId(req.params.id);
+  const car = {
+        brand: req.body.brand,
+        model: req.body.model,
+        year: req.body.year,
+        color: req.body.color,
+        fuelType: req.body.fuelType,
+        mileage: req.body.mileage,
+        features: req.body.features || [] // features is an array; 
+  };
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection("cars")
+    .replaceOne({ _id: carId }, car);
+  console.log(response);
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res
+      .status(500)
+      .json(
+        response.error || "Update failed. Contact not found or something went wrong..."
+      );
+  }
+};
 
-// const deleteContact = async (req, res) => {
-//   const userId = new ObjectId(req.params.id);
-//   const response = await mongodb
-//     .getDb()
-//     .db()
-//     .collection("cars")
-//     .deleteOne({ _id: userId }, true);
-//   console.log(response);
-//   if (response.deletedCount > 0) {
-//     res.status(200).send();
-//   } else {
-//     res
-//       .status(500)
-//       .json(
-//         response.error || "Delete failed. Contact not found or something went wrong..."
-//       );
-//   }
-// };
+
+// DELETE a specific car
+const deleteCar = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid carId to delete a car.');
+  }
+  const carId = new ObjectId(req.params.id);
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection("cars")
+    .deleteOne({ _id: carId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(200).send();
+  } else {
+    res
+      .status(500)
+      .json(
+        response.error || "Delete failed. Contact not found or something went wrong..."
+      );
+  }
+};
 
 module.exports = {
   getAllCars,
-//   getSingle,
+  getSingleCar,
   createNewCar,
-//   updateContact,
-//   deleteContact,
+  updateCar,
+  deleteCar,
 };
