@@ -25,7 +25,7 @@ content-type: application/json
 GET https://webservices2.onrender.com/cars/
 
 ### GET Specific car
-GET https://webservices2.onrender.com/cars/65c76575434690bad8c49fb2
+GET https://webservices2.onrender.com/cars/65cef9c7583d92df3af28cf2
 
 ### POST a new car
 POST https://webservices2.onrender.com/cars/
@@ -34,7 +34,7 @@ content-type: application/json
 {
 "brand": "Nissan",
 "model": "Altima",
-"year": 2023,
+"year": 2024,
 "color": "Silver",
 "fuelType": "Gasoline",
 "mileage": 4500,
@@ -64,4 +64,4 @@ content-type: application/json
 }
 
 ### DELETE a car
-DELETE https://webservices2.onrender.com/cars/65c76575434690bad8c49fb28
+DELETE https://webservices2.onrender.com/cars/65cef9c7583d92df3af28cf2
