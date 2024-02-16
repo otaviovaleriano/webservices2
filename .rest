@@ -24,6 +24,8 @@ content-type: application/json
 ### GET ALL cars
 GET https://webservices2.onrender.com/cars/
 
+### GET Specific car
+GET https://webservices2.onrender.com/cars/65c76575434690bad8c49fb2
 
 ### POST a new car
 POST https://webservices2.onrender.com/cars/
@@ -42,3 +44,24 @@ content-type: application/json
 "Keyless Entry"
 ]
 }
+
+### PUT - update car
+PUT https://webservices2.onrender.com/cars/65c76575434690bad8c49fb28
+content-type: application/json
+
+{
+"brand": "Nissan",
+"model": "Altima",
+"year": 2023,
+"color": "Silver",
+"fuelType": "Diesel",
+"mileage": 4500,
+"features": [
+"Bluetooth",
+"Backup Camera",
+"Keyless Entry"
+]
+}
+
+### DELETE a car
+DELETE https://webservices2.onrender.com/cars/65c76575434690bad8c49fb28
