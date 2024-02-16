@@ -95,7 +95,7 @@ const updateCar = async (req, res) => {
     res
       .status(500)
       .json(
-        response.error || "Update failed. Contact not found or something went wrong..."
+        response.error || "Update failed. Car not found or something went wrong..."
       );
   }
 };
@@ -119,7 +119,7 @@ const deleteCar = async (req, res) => {
     res
       .status(500)
       .json(
-        response.error || "Delete failed. Contact not found or something went wrong..."
+        response.error || "Delete failed. Car not found or something went wrong..."
       );
   }
 };
