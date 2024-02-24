@@ -14,9 +14,9 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.CLIENT_SECRET,
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://webservices2.onrender.com',
   clientID: process.env.CLIENT_ID,
-  issuerBaseURL: 'https://dev-manhaee1d1ymew3x.us.auth0.com'
+  issuerBaseURL: process.env.ISSUER_BASE_URL
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
