@@ -7,7 +7,8 @@ const mongodb = require('./db/connect');
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('swagger.json');
 
-const { auth } = require('express-openid-connect');
+// Okta Authentication with google
+const { auth, requiresAuth } = require('express-openid-connect');
 
 const config = {
   authRequired: false,
@@ -25,8 +26,6 @@ app.use(auth(config));
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
-
-const { requiresAuth } = require('express-openid-connect');
 
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
