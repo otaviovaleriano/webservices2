@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.use('/', require('./swagger'));
 router.use('/cars', require('./cars'));
+router.use('/motorcycles', require('./motorcycles'));
 // routes.use('/contacts', require('./contacts'));
 
 

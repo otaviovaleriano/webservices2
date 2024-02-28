@@ -23,6 +23,27 @@ const saveCar = (req, res, next) => {
     });
 };
 
+const saveMotorcycle = (req, res, next) => {
+    const validationRule = {
+        brand: 'required|string',
+        model: 'required|string',
+        year: 'required|integer',
+        color: 'required|string',
+        type: 'required|string',
+    };
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
 module.exports = {
-    saveCar
+    saveCar, saveMotorcycle
 };
