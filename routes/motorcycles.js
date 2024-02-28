@@ -5,10 +5,10 @@ const router = express.Router();
 const motorcyclesController = require('../controllers/motorcycles');
 const validation = require('../middleware/validate');
 
-router.get('/', motorcyclesController.getAllMotorcycles);
-router.get('/:id', motorcyclesController.getSingleMotorcycle);
-router.post('/', validation.saveMotorcycle, motorcyclesController.createNewMotorcycle);
-router.put('/:id', validation.saveMotorcycle, motorcyclesController.updateMotorcycle);
-router.delete('/:id', motorcyclesController.deleteMotorcycle);
+router.get('/', requiresAuth(), motorcyclesController.getAllMotorcycles);
+router.get('/:id', requiresAuth(), motorcyclesController.getSingleMotorcycle);
+router.post('/', requiresAuth(), validation.saveMotorcycle, motorcyclesController.createNewMotorcycle);
+router.put('/:id', requiresAuth(), validation.saveMotorcycle, motorcyclesController.updateMotorcycle);
+router.delete('/:id', requiresAuth(), motorcyclesController.deleteMotorcycle);
 
 module.exports = router;
