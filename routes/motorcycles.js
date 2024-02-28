@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const { requiresAuth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 const motorcyclesController = require('../controllers/motorcycles');
 const validation = require('../middleware/validate');
